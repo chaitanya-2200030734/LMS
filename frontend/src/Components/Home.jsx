@@ -32,7 +32,7 @@ function Home() {
       <Navbar page={"home"} />
       <div>
         <section id="home">
-          <h2>Enhance your future with EduVerse Academy</h2>
+          <h2>Enhance your future </h2>
           <p>
             {" "}
             OneYes Academy is a massive open online course provider, and its
@@ -83,7 +83,7 @@ function Home() {
             <div className="courses">
               <img src={c1} alt="" />
               <div className="details">
-                <p>Updated 12/08/23</p>
+                <p>Updated 12/08/24</p>
                 <h6>JavaScript Beginner Course</h6>
                 <div className="star">
                   {[...Array(5)].map((_, index) => (
@@ -92,12 +92,12 @@ function Home() {
                   <p>(239)</p>
                 </div>
               </div>
-              <div className="cost">$49.99</div>
+              <div className="cost">2000</div>
             </div>
             <div className="courses">
               <img src={c2} alt="" />
               <div className="details">
-                <p>Updated 12/08/23</p>
+                <p>Updated 12/08/24</p>
                 <h6>HTML Complete Course</h6>
                 <div className="star">
                   {[...Array(5)].map((_, index) => (
@@ -106,12 +106,12 @@ function Home() {
                   <p>(239)</p>
                 </div>
               </div>
-              <div className="cost">$49.99</div>
+              <div className="cost">2000 Rs</div>
             </div>
             <div className="courses">
               <img src={c3} alt="" />
               <div className="details">
-                <p>Updated 12/08/23</p>
+                <p>Updated 12/08/24</p>
                 <h6>SQL Beginner Course</h6>
                 <div className="star">
                   {[...Array(5)].map((_, index) => (
@@ -120,12 +120,12 @@ function Home() {
                   <p>(239)</p>
                 </div>
               </div>
-              <div className="cost">$49.99</div>
+              <div className="cost">2000 Rs</div>
             </div>
             <div className="courses">
               <img src={c4} alt="" />
               <div className="details">
-                <p>Updated 12/08/23</p>
+                <p>Updated 12/08/24</p>
                 <h6>Python Master Course</h6>
                 <div className="star">
                   {[...Array(5)].map((_, index) => (
@@ -134,12 +134,12 @@ function Home() {
                   <p>(239)</p>
                 </div>
               </div>
-              <div className="cost">$49.99</div>
+              <div className="cost">2000 Rs</div>
             </div>
             <div className="courses">
               <img src={c5} alt="" />
               <div className="details">
-                <p>Updated 12/08/23</p>
+                <p>Updated 12/08/24</p>
                 <h6>Java Essentials</h6>
                 <div className="star">
                   {[...Array(5)].map((_, index) => (
@@ -148,12 +148,12 @@ function Home() {
                   <p>(239)</p>
                 </div>
               </div>
-              <div className="cost">$49.99</div>
+              <div className="cost">2000 Rs</div>
             </div>
             <div className="courses">
               <img src={c6} alt="" />
               <div className="details">
-                <p>Updated 12/08/23</p>
+                <p>Updated 12/08/24</p>
                 <h6>CSS Complete Course</h6>
                 <div className="star">
                   {[...Array(5)].map((_, index) => (
@@ -162,7 +162,7 @@ function Home() {
                   <p>(239)</p>
                 </div>
               </div>
-              <div className="cost">$49.99</div>
+              <div className="cost">2000 Rs</div>
             </div>
           </div>
         </section>

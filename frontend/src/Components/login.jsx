@@ -9,68 +9,44 @@ function Login() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
   const { setUser } = useUserContext();
 
-  // Simulating a "database" of users, including an admin
-  const mockUsers = [
-    {
-      id: 1,
-      email: "testuser@example.com",
-      password: "password123",
-      username: "Test User",
-      role: "student", // This is a student account
-    },
-    {
-      id: 2,
-      email: "johndoe@example.com",
-      password: "johnpassword",
-      username: "John Doe",
-      role: "student", // Another student account
-    },
-    {
-      id: 3,
-      email: "admin@example.com",
-      password: "adminpassword",
-      username: "Admin User",
-      role: "admin", // This is the admin account
-    },
-  ];
-
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
-
-    // Simulate login logic
-    const user = mockUsers.find(
-      (u) => u.email === email && u.password === password
-    );
-
-    if (user) {
-      // Simulate setting the token and storing user details in localStorage
-      const fakeToken = "faketoken123";
-      localStorage.setItem("token", fakeToken);
-      localStorage.setItem("email", user.email);
-      localStorage.setItem("name", user.username);
-      localStorage.setItem("id", user.id);
-      localStorage.setItem("role", user.role); // Store the user role
-
-      console.log("Token:", fakeToken);
-
-      // Set user in context
-      setUser({
-        name: user.username,
-        email: user.email,
-        id: user.id,
-        role: user.role, // Store role in context
+    try {
+      const response = await fetch("http://localhost:8081/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       });
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("email", email);
+        console.log(data.token);
+        const userDetailsResponse = await fetch(
+          `http://localhost:8081/api/users/details?email=${email}`
+        );
 
-      // Redirect based on role (admin vs student)
-      if (user.role === "admin") {
-        navigate("/admin-dashboard"); // Navigate to admin dashboard
+        if (userDetailsResponse.ok) {
+          const ud = await userDetailsResponse.json();
+          localStorage.setItem("name", ud["username"]);
+          localStorage.setItem("id", ud["id"]);
+          console.log("Hello");
+          setUser({ name: ud["name"], email: email, id: ud["id"] });
+          navigate("/courses");
+        } else {
+          setError("An error occurred while fetching user details.");
+        }
       } else {
-        navigate("/courses"); // Navigate to courses for students
+        const data = await response.json();
+        setError(data.error);
       }
-    } else {
-      setError("Invalid email or password.");
+    } catch (error) {
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -119,6 +95,4 @@ function Login() {
     </div>
   );
 }
-
 export default Login;
-  

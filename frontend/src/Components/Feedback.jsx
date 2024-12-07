@@ -8,7 +8,7 @@ const Feedback = (props) => {
   const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/feedbacks/${courseId}`)
+    fetch(`http://localhost:8081/api/feedbacks/${courseId}`)
       .then((res) => res.json())
       .then((data) => {
         const firstThreeFeedbacks = data.slice(0, 3);

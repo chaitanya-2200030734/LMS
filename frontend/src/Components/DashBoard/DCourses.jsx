@@ -31,7 +31,7 @@ function Courses() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/courses`)
+    fetch(`http://localhost:8081/api/courses`)
       .then((response) => response.json())
       .then((data) => {
         setCourses(data);
@@ -44,7 +44,7 @@ function Courses() {
 
   function deleteCourse(courseId) {
     axios
-      .delete("http://localhost:8800/delete", {
+      .delete("http://localhost:8081/delete", {
         data: { courseId: courseId },
       })
       .then((response) => {

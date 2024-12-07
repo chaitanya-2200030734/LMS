@@ -10,9 +10,9 @@ function Dashboard() {
   const[enrolled , setEnrolled] = useState(0);
 
   useEffect(()=>{
-    fetch("http://localhost:8080/api/users").then((data)=>data.json()).then((res)=>setUserscount(res.length));
-    fetch("http://localhost:8080/api/courses").then((data)=>data.json()).then((res)=>setCoursescount(res.length));
-    fetch("http://localhost:8080/api/learning").then((data)=>data.json()).then((res)=>setEnrolled(res.length));
+    fetch("http://localhost:8081/api/users").then((data)=>data.json()).then((res)=>setUserscount(res.length));
+    fetch("http://localhost:8081/api/courses").then((data)=>data.json()).then((res)=>setCoursescount(res.length));
+    fetch("http://localhost:8081/api/learning").then((data)=>data.json()).then((res)=>setEnrolled(res.length));
   },[])
 
   return (

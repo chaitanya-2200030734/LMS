@@ -30,7 +30,7 @@ const Certificate = () => {
 
     async function fetchUserDetails() {
       try {
-        const response = await fetch(`http://localhost:8080/api/users/${id}`);
+        const response = await fetch(`http://localhost:8081/api/users/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch user details.");
         }
@@ -46,7 +46,7 @@ const Certificate = () => {
     async function fetchCourse() {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/courses/${courseId}`
+          `http://localhost:8081/api/courses/${courseId}`
         );
 
         if (!response.ok) {

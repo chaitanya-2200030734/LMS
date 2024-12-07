@@ -6,34 +6,39 @@ import Performance from "./DashBoard/Performance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
+
 function Profile() {
   const navigate = useNavigate();
   const authToken = localStorage.getItem("token");
+   const id = localStorage.getItem("id");
   const [userDetails, setUserDetails] = useState(null);
   const [profileImage, setProfileImage] = useState(localStorage.getItem("profileImage") || "");
 
-  // Mock user data to replace API fetch
+
+
   useEffect(() => {
     if (!authToken) {
       navigate("/login");
-    } else {
-      // Simulated user data from localStorage or mock data
-      const storedUser = {
-        username: localStorage.getItem("name") || "John Doe",
-        email: localStorage.getItem("email") || "johndoe@example.com",
-        phno: "123-456-7890",
-        gender: "Male",
-        dob: "1990-01-01",
-        profession: "Software Engineer",
-        learningCourses: ["Course 1", "Course 2"], // Mocked learning courses
-        linkedin_url: "https://www.linkedin.com/in/johndoe",
-        github_url: "https://github.com/johndoe",
-      };
-
-      // Set the user details from localStorage or mock data
-      setUserDetails(storedUser);
     }
-  }, [authToken, navigate]);
+
+    async function fetchUserDetails() {
+      try {
+        const response = await fetch(
+          `http://localhost:8081/api/users/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch user details.");
+        }
+        const data = await response.json();
+        console.log(data);
+        setUserDetails(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchUserDetails();
+  }, [authToken, navigate,id]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -50,6 +55,7 @@ function Profile() {
     }
   };
 
+
   return (
     <div>
       <Navbar page={"profile"} />
@@ -65,17 +71,17 @@ function Profile() {
           <p className="profile-phno">{userDetails?.phno}</p>
         </div>
         <div>
-          <h4>Gender: </h4>
-          <p className="profile-gender">{userDetails?.gender}</p>
-        </div>
-        <div>
-          <h4>Date of Birth: </h4>
-          <p className="profile-dob">{userDetails?.dob}</p>
-        </div>
-        <div>
-          <h4>Profession: </h4>
-          <p className="profile-gender">{userDetails?.profession}</p>
-        </div>
+        <h4>Gender: </h4>
+        <p className="profile-gender">{userDetails?.gender}</p>
+      </div>
+      <div>
+        <h4>Date of Birth: </h4>
+        <p className="profile-dob">{userDetails?.dob}</p>
+      </div>
+      <div>
+        <h4>Profession: </h4>
+        <p className="profile-gender">{userDetails?.profession}</p>
+      </div>
         <div>
           <h4>Learning courses: </h4>
           <p className="profile-phno">{userDetails?.learningCourses.length}</p>
